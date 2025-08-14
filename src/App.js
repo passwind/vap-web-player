@@ -37,6 +37,11 @@ function App() {
         vapInstanceRef.current = null;
       }
 
+      // 清空容器内容，防止重复渲染
+      if (containerRef.current) {
+        containerRef.current.innerHTML = '';
+      }
+
       // 解析config参数
       let configObj = {};
       if (config) {
