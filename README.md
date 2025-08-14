@@ -4,53 +4,55 @@
 [![Node.js](https://img.shields.io/badge/node-%3E%3D%2016-brightgreen)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/react-18.2.0-blue)](https://reactjs.org/)
 
-一个基于React的VAP（Video Animation Player）Web播放器，支持透明视频动画播放和动态配置。
+[中文文档](./README_CN.md) | English
 
-## 🎯 主要功能
+A React-based VAP (Video Animation Player) web player that supports transparent video animation playback with dynamic configuration.
 
-- **透明视频播放**: 支持带透明通道的MP4视频播放
-- **动态配置**: 通过URL参数或JSON配置文件动态设置播放参数
-- **响应式设计**: 自动适配不同屏幕尺寸
-- **事件监听**: 完整的播放事件回调支持
-- **简洁界面**: 纯播放器模式，背景透明，适合嵌入使用
+## 🎯 Key Features
 
-## 🚀 快速开始
+- **Transparent Video Playback**: Support for MP4 videos with alpha channel
+- **Dynamic Configuration**: Configure playback parameters via URL parameters or JSON config files
+- **Responsive Design**: Automatically adapts to different screen sizes
+- **Event Handling**: Complete playback event callback support
+- **Clean Interface**: Pure player mode with transparent background, perfect for embedding
 
-### 在线体验
+## 🚀 Quick Start
 
-访问 [GitHub Pages 演示](https://username.github.io/vap-web-player) （请替换为实际的GitHub Pages地址）
+### Online Demo
 
-### 本地运行
+Visit [GitHub Pages Demo](https://username.github.io/vap-web-player) (replace with your actual GitHub Pages URL)
+
+### Local Development
 
 ```bash
-# 克隆项目
+# Clone the repository
 git clone https://github.com/username/vap-web-player.git
 cd vap-web-player
 
-# 安装依赖
+# Install dependencies
 npm install
 
-# 启动开发服务器
+# Start development server
 npm start
 
-# 浏览器访问 http://localhost:3000
+# Open http://localhost:3000 in your browser
 ```
 
-## 📖 使用方法
+## 📖 Usage
 
-### URL参数方式
+### URL Parameters
 
-在浏览器中访问以下格式的URL：
+Access the following URL format in your browser:
 
 ```
 http://localhost:3000?src=your-video-url.mp4&config=config-url-or-json
 ```
 
-**参数说明：**
-- `src`: 必需，MP4视频文件的URL地址
-- `config`: 可选，配置JSON的URL地址或JSON字符串
+**Parameters:**
+- `src`: Required, URL of the MP4 video file
+- `config`: Optional, URL of JSON config file or JSON string
 
-### 配置文件格式
+### Configuration Format
 
 ```json
 {
@@ -62,115 +64,115 @@ http://localhost:3000?src=your-video-url.mp4&config=config-url-or-json
 }
 ```
 
-**配置参数：**
-- `w`: 视频宽度，默认375
-- `h`: 视频高度，默认375  
-- `fps`: 帧率，默认20
+**Configuration Parameters:**
+- `w`: Video width, default 375
+- `h`: Video height, default 375
+- `fps`: Frame rate, default 20
 
-### 示例
+### Examples
 
 ```
-# 基本使用
+# Basic usage
 http://localhost:3000?src=https://example.com/video.mp4
 
-# 带配置文件
+# With config file
 http://localhost:3000?src=https://example.com/video.mp4&config=https://example.com/config.json
 
-# 内联配置
+# Inline config
 http://localhost:3000?src=https://example.com/video.mp4&config={"info":{"w":500,"h":500,"fps":30}}
 ```
 
-## 🛠️ 开发
+## 🛠️ Development
 
-### 项目结构
+### Project Structure
 
 ```
 vap-web-player/
 ├── public/
-│   └── index.html          # HTML模板
+│   └── index.html          # HTML template
 ├── src/
-│   ├── App.js              # 主应用组件
-│   ├── index.js            # 应用入口
-│   └── index.css           # 全局样式
+│   ├── App.js              # Main application component
+│   ├── index.js            # Application entry point
+│   └── index.css           # Global styles
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml      # GitHub Actions部署配置
-├── package.json            # 项目配置
-└── README.md              # 项目说明
+│       └── deploy.yml      # GitHub Actions deployment config
+├── package.json            # Project configuration
+└── README.md              # Project documentation
 ```
 
-### 可用脚本
+### Available Scripts
 
 ```bash
-# 开发模式
+# Development mode
 npm start
 
-# 构建生产版本
+# Build for production
 npm run build
 
-# 运行测试
+# Run tests
 npm test
 
-# 弹出配置（不可逆）
+# Eject configuration (irreversible)
 npm run eject
 ```
 
-## 📦 构建和部署
+## 📦 Build and Deployment
 
-### 本地构建
+### Local Build
 
 ```bash
 npm run build
 ```
 
-构建文件将生成在 `build/` 目录中。
+Build files will be generated in the `build/` directory.
 
-### GitHub Pages 自动部署
+### GitHub Pages Auto Deployment
 
-项目已配置GitHub Actions自动部署：
+The project is configured with GitHub Actions for automatic deployment:
 
-1. **更新配置**: 修改 `package.json` 中的 `homepage` 字段为你的GitHub Pages地址
-2. **推送代码**: 推送到 `main` 分支会自动触发部署
-3. **启用Pages**: 在GitHub仓库设置中启用GitHub Pages，选择 `gh-pages` 分支
+1. **Update Configuration**: Modify the `homepage` field in `package.json` to your GitHub Pages URL
+2. **Push Code**: Pushing to the `main` branch will automatically trigger deployment
+3. **Enable Pages**: Enable GitHub Pages in repository settings and select the `gh-pages` branch
 
-详细部署说明请参考 [DEPLOYMENT.md](./DEPLOYMENT.md)
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
-### 手动部署
+### Manual Deployment
 
 ```bash
-# 构建项目
+# Build the project
 npm run build
 
-# 将build目录内容部署到你的Web服务器
+# Deploy the build directory contents to your web server
 ```
 
-## 🔧 技术栈
+## 🔧 Tech Stack
 
-- **React 18**: 用户界面框架
-- **video-animation-player**: VAP核心播放库
-- **GitHub Actions**: 自动化部署
-- **GitHub Pages**: 静态网站托管
+- **React 18**: User interface framework
+- **video-animation-player**: VAP core playback library
+- **GitHub Actions**: Automated deployment
+- **GitHub Pages**: Static website hosting
 
-## 📄 许可证
+## 📄 License
 
-本项目采用 [MIT License](LICENSE) 许可证。
+This project is licensed under the [MIT License](LICENSE).
 
-## 🙏 致谢
+## 🙏 Acknowledgments
 
-特别感谢 [Tencent VAP](https://github.com/Tencent/vap) 项目提供的优秀视频动画播放解决方案。VAP是企鹅电竞开发的融合礼物特效组件，为Web端透明视频播放提供了强大的技术支持。
+Special thanks to the [Tencent VAP](https://github.com/Tencent/vap) project for providing an excellent video animation playback solution. VAP is a fusion gift effect component developed by Penguin Esports, providing powerful technical support for transparent video playback on the web.
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交Issue和Pull Request来改进这个项目！
+Welcome to submit Issues and Pull Requests to improve this project!
 
-## 📞 支持
+## 📞 Support
 
-如果你在使用过程中遇到问题，请：
+If you encounter problems during use, please:
 
-1. 查看 [Issues](https://github.com/username/vap-web-player/issues) 中是否有类似问题
-2. 创建新的Issue描述你的问题
-3. 提供详细的错误信息和复现步骤
+1. Check if there are similar issues in [Issues](https://github.com/username/vap-web-player/issues)
+2. Create a new Issue describing your problem
+3. Provide detailed error information and reproduction steps
 
 ---
 
-**注意**: 请将README中的 `username` 替换为你的实际GitHub用户名。
+**Note**: Please replace `username` in the README with your actual GitHub username.
