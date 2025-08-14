@@ -4,10 +4,9 @@ import Vap from 'video-animation-player';
 function App() {
   const containerRef = useRef(null);
   const vapInstanceRef = useRef(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [urlParams, setUrlParams] = useState({ src: '', config: '' });
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [, setError] = useState(null);
+  const [, setLoading] = useState(true);
+  const [, setIsPlaying] = useState(false);
 
   // Parse URL parameters
   useEffect(() => {
@@ -15,7 +14,7 @@ function App() {
     const src = searchParams.get('src') || '';
     const config = searchParams.get('config') || '';
     
-    setUrlParams({ src, config });
+    // Store URL parameters for potential future use
     
     if (!src) {
       setError('Please provide src parameter in URL, e.g.: ?src=your-video-url.mp4');
@@ -135,24 +134,25 @@ function App() {
       }
   };
 
-  const handlePlay = () => {
-    if (vapInstanceRef.current) {
-      vapInstanceRef.current.play();
-    }
-  };
+  // Player control functions (available for future UI controls)
+  // const handlePlay = () => {
+  //   if (vapInstanceRef.current) {
+  //     vapInstanceRef.current.play();
+  //   }
+  // };
 
-  const handlePause = () => {
-    if (vapInstanceRef.current) {
-      vapInstanceRef.current.pause();
-    }
-  };
+  // const handlePause = () => {
+  //   if (vapInstanceRef.current) {
+  //     vapInstanceRef.current.pause();
+  //   }
+  // };
 
-  const handleRestart = () => {
-    if (vapInstanceRef.current) {
-      vapInstanceRef.current.setTime(0);
-      vapInstanceRef.current.play();
-    }
-  };
+  // const handleRestart = () => {
+  //   if (vapInstanceRef.current) {
+  //     vapInstanceRef.current.setTime(0);
+  //     vapInstanceRef.current.play();
+  //   }
+  // };
 
   // Cleanup on component unmount
   useEffect(() => {
