@@ -54,14 +54,20 @@ function App() {
         }
       }
 
+      // 从config中获取尺寸和帧率信息
+      const configInfo = configObj.info || {};
+      const width = configInfo.w || 375;
+      const height = configInfo.h || 375;
+      const fps = configInfo.fps || 20;
+
       // 创建VAP实例
       const vapOptions = {
         container: containerRef.current,
         src: src,
         config: configObj,
-        width: 375,
-        height: 375,
-        fps: 20,
+        width: width,
+        height: height,
+        fps: fps,
         mute: false,
         loop: true,
         type: 'web-player',
