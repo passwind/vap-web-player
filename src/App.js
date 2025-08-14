@@ -164,62 +164,17 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="header">
-        <h1>VAP Web Player</h1>
-        <p>基于VAP的React视频动画播放器</p>
-      </div>
-
-      {/* 显示当前URL参数 */}
-      <div className="url-params">
-        <strong>当前参数:</strong><br />
-        src: {urlParams.src || '未提供'}<br />
-        config: {urlParams.config || '未提供'}
-      </div>
-
-      {/* 错误信息 */}
-      {error && (
-        <div className="error-message">
-          {error}
-        </div>
-      )}
-
-      {/* 播放器容器 */}
-      <div className="player-container">
-        {loading && !error && (
-          <div className="loading">正在加载视频...</div>
-        )}
-        <div ref={containerRef} style={{ display: loading ? 'none' : 'block' }}></div>
-      </div>
-
-      {/* 控制按钮 */}
-      {!loading && !error && (
-        <div className="controls">
-          <button onClick={handlePlay} disabled={isPlaying}>
-            播放
-          </button>
-          <button onClick={handlePause} disabled={!isPlaying}>
-            暂停
-          </button>
-          <button onClick={handleRestart}>
-            重新开始
-          </button>
-        </div>
-      )}
-
-      {/* 使用说明 */}
-      <div style={{ marginTop: '40px', padding: '20px', background: 'white', borderRadius: '8px' }}>
-        <h3>使用说明:</h3>
-        <p>在URL中添加以下参数来播放视频:</p>
-        <ul>
-          <li><strong>src</strong>: MP4视频文件的URL (必需)</li>
-          <li><strong>config</strong>: VAP配置JSON的URL或JSON字符串 (可选)</li>
-        </ul>
-        <p><strong>示例:</strong></p>
-        <code>
-          ?src=https://example.com/video.mp4&config=https://example.com/config.json
-        </code>
-      </div>
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: 'transparent',
+      margin: 0,
+      padding: 0
+    }}>
+      <div ref={containerRef}></div>
     </div>
   );
 }
