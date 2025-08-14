@@ -175,4 +175,4 @@ If you encounter problems during use, please:
 
 ---
 
-**Note**: Please replace `username` in the README with your actual GitHub username.
+**Note**: Please replace `username` in the README with your actual GitHub username. Thx
