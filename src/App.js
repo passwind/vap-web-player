@@ -9,7 +9,7 @@ function App() {
   const [urlParams, setUrlParams] = useState({ src: '', config: '' });
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // 解析URL参数
+  // Parse URL parameters
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const src = searchParams.get('src') || '';
@@ -18,7 +18,7 @@ function App() {
     setUrlParams({ src, config });
     
     if (!src) {
-      setError('请在URL中提供src参数，例如: ?src=your-video-url.mp4');
+      setError('Please provide src parameter in URL, e.g.: ?src=your-video-url.mp4');
       setLoading(false);
       return;
     }
@@ -31,41 +31,41 @@ function App() {
       setLoading(true);
       setError(null);
 
-      // 销毁之前的实例
+      // Destroy previous instance
       if (vapInstanceRef.current) {
         vapInstanceRef.current.destroy();
         vapInstanceRef.current = null;
       }
 
-      // 清空容器内容，防止重复渲染
+      // Clear container content to prevent duplicate rendering
       if (containerRef.current) {
         containerRef.current.innerHTML = '';
       }
 
-      // 解析config参数
+      // Parse config parameter
       let configObj = {};
       if (config) {
         try {
-          // 如果config是URL，尝试获取JSON
+          // If config is URL, try to fetch JSON
           if (config.startsWith('http')) {
             const response = await fetch(config);
             configObj = await response.json();
           } else {
-            // 如果config是JSON字符串，直接解析
+            // If config is JSON string, parse directly
             configObj = JSON.parse(decodeURIComponent(config));
           }
         } catch (e) {
-          console.warn('Config解析失败，使用默认配置:', e);
+          console.warn('Config parsing failed, using default config:', e);
         }
       }
 
-      // 从config中获取尺寸和帧率信息
+      // Get size and fps info from config
       const configInfo = configObj.info || {};
       const width = configInfo.w || 375;
       const height = configInfo.h || 375;
       const fps = configInfo.fps || 20;
 
-      // 创建VAP实例
+      // Create VAP instance
       const vapOptions = {
         container: containerRef.current,
         src: src,
@@ -79,12 +79,12 @@ function App() {
         accurate: true,
         precache: false,
         onLoadError: (err) => {
-          console.error('VAP加载错误:', err);
-          setError('视频加载失败: ' + (err.message || '未知错误'));
+          console.error('VAP loading error:', err);
+          setError('Video loading failed: ' + (err.message || 'Unknown error'));
           setLoading(false);
         },
         onDestroy: () => {
-          console.log('VAP实例已销毁');
+          console.log('VAP instance destroyed');
           setIsPlaying(false);
         }
       };
@@ -92,47 +92,47 @@ function App() {
       const vapInstance = new Vap(vapOptions);
       vapInstanceRef.current = vapInstance;
 
-      // 绑定事件
+      // Bind events
       vapInstance.on('loadstart', () => {
-        console.log('开始加载视频');
+        console.log('Start loading video');
       });
 
       vapInstance.on('canplay', () => {
-        console.log('视频可以播放');
-        setLoading(false);
-      });
+          console.log('Video can play');
+          setLoading(false);
+        });
 
-      vapInstance.on('play', () => {
-        console.log('视频开始播放');
-        setIsPlaying(true);
-      });
+     vapInstance.on('playing', () => {
+          console.log('Video started playing');
+          setIsPlaying(true);
+        });
 
       vapInstance.on('pause', () => {
-        console.log('视频暂停');
-        setIsPlaying(false);
-      });
+          console.log('Video paused');
+          setIsPlaying(false);
+        });
 
       vapInstance.on('ended', () => {
-        console.log('视频播放结束');
-        setIsPlaying(false);
-      });
+          console.log('Video playback ended');
+          setIsPlaying(false);
+        });
 
       vapInstance.on('error', (err) => {
-        console.error('VAP播放错误:', err);
-        setError('播放错误: ' + (err.message || '未知错误'));
-        setLoading(false);
-      });
+          console.error('VAP playback error:', err);
+          setError('Playback error: ' + (err.message || 'Unknown error'));
+          setLoading(false);
+        });
 
-      // 监听帧事件（可选）
-      vapInstance.on('frame', (frameData) => {
-        // console.log('当前帧:', frameData);
-      });
+      // Listen to frame events (optional)
+        vapInstance.on('frame', (frameData) => {
+          // console.log('Current frame:', frameData);
+        });
 
     } catch (err) {
-      console.error('初始化VAP失败:', err);
-      setError('初始化失败: ' + err.message);
-      setLoading(false);
-    }
+        console.error('VAP initialization failed:', err);
+        setError('Initialization failed: ' + err.message);
+        setLoading(false);
+      }
   };
 
   const handlePlay = () => {
@@ -154,7 +154,7 @@ function App() {
     }
   };
 
-  // 组件卸载时清理
+  // Cleanup on component unmount
   useEffect(() => {
     return () => {
       if (vapInstanceRef.current) {
